@@ -50,7 +50,7 @@ export function LanguageSelection({ onNext }: LanguageSelectionProps) {
     <motion.div className="w-full max-w-md" initial="hidden" animate="visible" variants={staggerContainer}>
       <motion.div variants={fadeIn} className="mb-8 text-center">
         <h1 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Choose Your Language</h1>
-        <p className="text-gray-600 dark:text-gray-300">Select the language you're most comfortable with</p>
+        <p className="text-gray-600 dark:text-gray-300">Select the language you&apos;re most comfortable with</p>
       </motion.div>
 
       <motion.div variants={fadeIn} className="space-y-4 mb-8">

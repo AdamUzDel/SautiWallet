@@ -77,7 +77,7 @@ export function VoiceAssistantSetup({ onNext }: VoiceAssistantSetupProps) {
     <motion.div className="w-full max-w-md" initial="hidden" animate="visible" variants={staggerContainer}>
       <motion.div variants={fadeIn} className="mb-8 text-center">
         <h1 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">Choose Your Voice Assistant</h1>
-        <p className="text-gray-600 dark:text-gray-300">Select a voice that you'll be comfortable talking with</p>
+        <p className="text-gray-600 dark:text-gray-300">Select a voice that you&apos;ll be comfortable talking with</p>
       </motion.div>
 
       <motion.div variants={fadeIn} className="space-y-4 mb-8">
@@ -120,7 +120,7 @@ export function VoiceAssistantSetup({ onNext }: VoiceAssistantSetupProps) {
                   )}
                 </Button>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 italic">"{voice.preview}"</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300 italic">&quot;{voice.preview}&quot;</p>
             </div>
           </Card>
         ))}
@@ -129,7 +129,7 @@ export function VoiceAssistantSetup({ onNext }: VoiceAssistantSetupProps) {
       {selectedVoice && (
         <motion.div variants={fadeIn} className="mb-8 flex flex-col items-center">
           <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 text-center">
-            Test your microphone by saying "Hello Sauti"
+            Test your microphone by saying &quot;Hello Sauti&quot;
           </p>
           <Button
             variant="outline"

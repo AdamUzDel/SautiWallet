@@ -134,7 +134,7 @@ export function OnboardingScreen() {
                 </svg>
               </div>
             </div>
-            <h1 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">You're all set!</h1>
+            <h1 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">You&apos;re all set!</h1>
             <p className="text-gray-600 dark:text-gray-300 mb-8">Your SautiWallet is ready to use</p>
 
             <Link href="/dashboard" passHref>
