@@ -10,6 +10,14 @@ import { Textarea } from "@/components/ui/textarea"
 import { ArrowLeft, ChevronRight, Search, User, Mic, Check } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
+// Add this interface at the top of the file, after the imports
+interface Contact {
+  id: number | string
+  name: string
+  phone: string
+  recent?: boolean
+}
+
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
@@ -25,7 +33,8 @@ const staggerContainer = {
   },
 }
 
-const contacts = [
+// Make sure the contacts array is properly typed:
+const contacts: Contact[] = [
   { id: 1, name: "Sarah Nakato", phone: "+256 712 345 678", recent: true },
   { id: 2, name: "David Okello", phone: "+256 774 567 890", recent: true },
   { id: 3, name: "Mary Auma", phone: "+256 701 234 567", recent: true },
@@ -37,7 +46,8 @@ const recentAmounts = [{ amount: "5,000" }, { amount: "10,000" }, { amount: "20,
 
 export function SendMoneyFlow() {
   const [step, setStep] = useState(0)
-  const [selectedContact, setSelectedContact] = useState<any>(null)
+  // Replace the useState<any>(null) with:
+  const [selectedContact, setSelectedContact] = useState<Contact | null>(null)
   const [amount, setAmount] = useState("")
   const [note, setNote] = useState("")
   const [isRecording, setIsRecording] = useState(false)
@@ -96,8 +106,13 @@ export function SendMoneyFlow() {
               </div>
               <p className="text-gray-600 dark:text-gray-300 mb-4">No contacts found</p>
               <Button
+                // Update where you set the contact from search query:
                 onClick={() => {
-                  setSelectedContact({ name: searchQuery, phone: searchQuery, id: "new" })
+                  setSelectedContact({
+                    id: "new",
+                    name: searchQuery,
+                    phone: searchQuery,
+                  })
                   nextStep()
                 }}
               >
@@ -193,14 +208,14 @@ export function SendMoneyFlow() {
             <div className="flex items-center mb-6">
               <Avatar className="h-12 w-12 mr-4">
                 <AvatarImage
-                  src={`/placeholder.svg?height=48&width=48&text=${selectedContact.name.charAt(0)}`}
-                  alt={selectedContact.name}
+                  src={`/placeholder.svg?height=48&width=48&text=${selectedContact?.name?.charAt(0)}`}
+                  alt={selectedContact?.name}
                 />
-                <AvatarFallback>{selectedContact.name.charAt(0)}</AvatarFallback>
+                <AvatarFallback>{selectedContact?.name?.charAt(0)}</AvatarFallback>
               </Avatar>
               <div>
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">{selectedContact.name}</h2>
-                <p className="text-gray-600 dark:text-gray-300">{selectedContact.phone}</p>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">{selectedContact?.name}</h2>
+                <p className="text-gray-600 dark:text-gray-300">{selectedContact?.phone}</p>
               </div>
             </div>
           </motion.div>
@@ -285,13 +300,13 @@ export function SendMoneyFlow() {
                 <div className="flex flex-col items-center mb-6">
                   <Avatar className="h-16 w-16 mb-3">
                     <AvatarImage
-                      src={`/placeholder.svg?height=64&width=64&text=${selectedContact.name.charAt(0)}`}
-                      alt={selectedContact.name}
+                      src={`/placeholder.svg?height=64&width=64&text=${selectedContact?.name?.charAt(0)}`}
+                      alt={selectedContact?.name}
                     />
-                    <AvatarFallback>{selectedContact.name.charAt(0)}</AvatarFallback>
+                    <AvatarFallback>{selectedContact?.name?.charAt(0)}</AvatarFallback>
                   </Avatar>
-                  <p className="text-lg font-medium text-gray-900 dark:text-white">{selectedContact.name}</p>
-                  <p className="text-gray-600 dark:text-gray-300">{selectedContact.phone}</p>
+                  <p className="text-lg font-medium text-gray-900 dark:text-white">{selectedContact?.name}</p>
+                  <p className="text-gray-600 dark:text-gray-300">{selectedContact?.phone}</p>
                 </div>
 
                 {note && (
@@ -348,7 +363,7 @@ export function SendMoneyFlow() {
             </div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Transfer Successful!</h2>
             <p className="text-gray-600 dark:text-gray-300 mb-2">
-              You&apos;ve sent UGX {amount} to {selectedContact.name}
+              You've sent UGX {amount} to {selectedContact?.name}
             </p>
             <p className="text-sm text-gray-500 dark:text-gray-400">
               Transaction ID: TRX{Math.floor(Math.random() * 1000000)}

@@ -11,6 +11,18 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar as CalendarComponent } from "@/components/ui/calendar"
 import { format } from "date-fns"
 
+// Add this interface at the top of the file, after the imports
+interface Transaction {
+  id: number
+  name: string
+  amount: string
+  type: "sent" | "received" | "paid"
+  date: string
+  time: string
+  category: string
+  description: string
+}
+
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
@@ -26,7 +38,8 @@ const staggerContainer = {
   },
 }
 
-const transactions = [
+// Make sure the transactions array is properly typed:
+const transactions: Transaction[] = [
   {
     id: 1,
     name: "Sarah Nakato",
@@ -104,7 +117,8 @@ export function TransactionHistory() {
   const [typeFilter, setTypeFilter] = useState<string | null>(null)
   const [categoryFilter, setCategoryFilter] = useState<string | null>(null)
   const [date, setDate] = useState<Date | undefined>(undefined)
-  const [selectedTransaction, setSelectedTransaction] = useState<any | null>(null)
+  // Replace the useState<any | null>(null) with:
+  const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null)
 
   const filteredTransactions = transactions.filter((transaction) => {
     // Search filter
@@ -126,7 +140,8 @@ export function TransactionHistory() {
 
   const categories = [...new Set(transactions.map((t) => t.category))]
 
-  const handleViewDetails = (transaction: any) => {
+  // Update the handleViewDetails function:
+  const handleViewDetails = (transaction: Transaction) => {
     setSelectedTransaction(transaction)
   }
 
