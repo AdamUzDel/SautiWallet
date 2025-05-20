@@ -16,7 +16,7 @@ const languageNames: Record<string, { native: string; english: string; flag: str
 export function LanguageSwitcher() {
   const router = useRouter()
   const pathname = usePathname()
-  const [isPending, startTransition] = useTransition()
+  const [, startTransition] = useTransition()
 
   function onSelectChange(locale: string) {
     startTransition(() => {

@@ -1,8 +1,13 @@
 // Type definitions for the Web Speech API
+interface SpeechRecognitionErrorEvent extends Event {
+    error: string
+    message?: string
+}
+
 interface SpeechRecognitionEvent extends Event {
     results: SpeechRecognitionResultList
     resultIndex: number
-    interpretation: any
+    interpretation: Record<string, unknown>
   }
   
   // Define the SpeechRecognition interface
@@ -11,17 +16,17 @@ interface SpeechRecognitionEvent extends Event {
     interimResults: boolean
     lang: string
     maxAlternatives: number
-    onaudioend: ((this: SpeechRecognition, ev: Event) => any) | null
-    onaudiostart: ((this: SpeechRecognition, ev: Event) => any) | null
-    onend: ((this: SpeechRecognition, ev: Event) => any) | null
-    onerror: ((this: SpeechRecognition, ev: Event) => any) | null
-    onnomatch: ((this: SpeechRecognition, ev: Event) => any) | null
-    onresult: ((this: SpeechRecognition, ev: SpeechRecognitionEvent) => any) | null
-    onsoundend: ((this: SpeechRecognition, ev: Event) => any) | null
-    onsoundstart: ((this: SpeechRecognition, ev: Event) => any) | null
-    onspeechend: ((this: SpeechRecognition, ev: Event) => any) | null
-    onspeechstart: ((this: SpeechRecognition, ev: Event) => any) | null
-    onstart: ((this: SpeechRecognition, ev: Event) => any) | null
+    onaudioend: ((this: SpeechRecognition, ev: Event) => void) | null
+    onaudiostart: ((this: SpeechRecognition, ev: Event) => void) | null
+    onend: ((this: SpeechRecognition, ev: Event) => void) | null
+    onerror: ((this: SpeechRecognition, ev: SpeechRecognitionErrorEvent) => void) | null
+    onnomatch: ((this: SpeechRecognition, ev: Event) => void) | null
+    onresult: ((this: SpeechRecognition, ev: SpeechRecognitionEvent) => void) | null
+    onsoundend: ((this: SpeechRecognition, ev: Event) => void) | null
+    onsoundstart: ((this: SpeechRecognition, ev: Event) => void) | null
+    onspeechend: ((this: SpeechRecognition, ev: Event) => void) | null
+    onspeechstart: ((this: SpeechRecognition, ev: Event) => void) | null
+    onstart: ((this: SpeechRecognition, ev: Event) => void) | null
     start(): void
     stop(): void
     abort(): void
@@ -40,13 +45,13 @@ interface SpeechRecognitionEvent extends Event {
     text: string
     voice: SpeechSynthesisVoice | null
     volume: number
-    onboundary: ((this: SpeechSynthesisUtterance, ev: Event) => any) | null
-    onend: ((this: SpeechSynthesisUtterance, ev: Event) => any) | null
-    onerror: ((this: SpeechSynthesisUtterance, ev: Event) => any) | null
-    onmark: ((this: SpeechSynthesisUtterance, ev: Event) => any) | null
-    onpause: ((this: SpeechSynthesisUtterance, ev: Event) => any) | null
-    onresume: ((this: SpeechSynthesisUtterance, ev: Event) => any) | null
-    onstart: ((this: SpeechSynthesisUtterance, ev: Event) => any) | null
+    onboundary: ((this: SpeechSynthesisUtterance, ev: Event) => void) | null
+    onend: ((this: SpeechSynthesisUtterance, ev: Event) => void) | null
+    onerror: ((this: SpeechSynthesisUtterance, ev: Event) => void) | null
+    onmark: ((this: SpeechSynthesisUtterance, ev: Event) => void) | null
+    onpause: ((this: SpeechSynthesisUtterance, ev: Event) => void) | null
+    onresume: ((this: SpeechSynthesisUtterance, ev: Event) => void) | null
+    onstart: ((this: SpeechSynthesisUtterance, ev: Event) => void) | null
   }
   
   interface CustomSpeechSynthesisUtteranceConstructor {
@@ -56,24 +61,46 @@ interface SpeechRecognitionEvent extends Event {
   
   // Get the appropriate SpeechRecognition constructor based on browser
   let SpeechRecognitionAPI: SpeechRecognitionConstructor | undefined
-  let SpeechGrammarList: any
+  interface SpeechGrammarList {
+    addFromString(string: string, weight?: number): void;
+    addFromURI(src: string, weight?: number): void;
+    item(index: number): SpeechGrammar;
+    readonly length: number;
+  }
+
+  interface SpeechGrammar {
+    src: string;
+    weight: number;
+  }
+
+  let SpeechGrammarList: { new (): SpeechGrammarList } | undefined
   let SpeechSynthesisUtteranceAPI: CustomSpeechSynthesisUtteranceConstructor | undefined
   
   // Initialize the speech recognition and synthesis APIs if in browser environment
+  interface ExtendedWindow extends Window {
+      SpeechRecognition?: SpeechRecognitionConstructor;
+      webkitSpeechRecognition?: SpeechRecognitionConstructor;
+      mozSpeechRecognition?: SpeechRecognitionConstructor;
+      msSpeechRecognition?: SpeechRecognitionConstructor;
+      SpeechSynthesisUtterance?: CustomSpeechSynthesisUtteranceConstructor;
+      SpeechGrammarList?: { new (): SpeechGrammarList };
+      webkitSpeechGrammarList?: { new (): SpeechGrammarList };
+      mozSpeechGrammarList?: { new (): SpeechGrammarList };
+      msSpeechGrammarList?: { new (): SpeechGrammarList };
+  }
+
   if (typeof window !== "undefined") {
     SpeechRecognitionAPI =
-      (window as any).SpeechRecognition ||
-      (window as any).webkitSpeechRecognition ||
-      (window as any).mozSpeechRecognition ||
-      (window as any).msSpeechRecognition
-  
+      (window as ExtendedWindow).SpeechRecognition ||
+      (window as ExtendedWindow).webkitSpeechRecognition ||
+      (window as ExtendedWindow).mozSpeechRecognition ||
+      (window as ExtendedWindow).msSpeechRecognition
     SpeechGrammarList =
-      (window as any).SpeechGrammarList ||
-      (window as any).webkitSpeechGrammarList ||
-      (window as any).mozSpeechGrammarList ||
-      (window as any).msSpeechGrammarList
-  
-    SpeechSynthesisUtteranceAPI = (window as any).SpeechSynthesisUtterance as CustomSpeechSynthesisUtteranceConstructor
+      (window as ExtendedWindow).SpeechGrammarList ||
+      (window as ExtendedWindow).webkitSpeechGrammarList ||
+      (window as ExtendedWindow).mozSpeechGrammarList ||
+      (window as ExtendedWindow).msSpeechGrammarList
+    SpeechSynthesisUtteranceAPI = (window as ExtendedWindow).SpeechSynthesisUtterance
   }
   
   // Voice assistant class
@@ -128,7 +155,7 @@ interface SpeechRecognitionEvent extends Event {
         this.recognition.start()
         this.isListening = true
         return true
-      } catch (error) {
+      } catch {
         if (onError) onError("Failed to start speech recognition")
         return false
       }
@@ -191,7 +218,7 @@ interface SpeechRecognitionEvent extends Event {
     }
   
     // Handle speech recognition error
-    private handleError(event: any): void {
+    private handleError(event: SpeechRecognitionErrorEvent): void {
       this.isListening = false
       if (this.onErrorCallback) {
         this.onErrorCallback(`Speech recognition error: ${event.error}`)

@@ -18,7 +18,7 @@ export function IntegrationTest() {
     // Test Supabase connection
     async function testSupabase() {
       try {
-        const { data, error } = await supabase.from("voice_assistants").select("count").limit(1)
+        const { error } = await supabase.from("voice_assistants").select("count").limit(1)
 
         if (error) {
           setSupabaseStatus("error")

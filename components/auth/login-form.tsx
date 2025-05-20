@@ -86,7 +86,7 @@ export function LoginForm() {
       </CardContent>
       <CardFooter className="flex justify-center">
         <p className="text-sm text-gray-500">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Button variant="link" className="p-0 h-auto" onClick={() => router.push("/auth/signup")}>
             Sign up
           </Button>
