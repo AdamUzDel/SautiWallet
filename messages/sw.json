@@ -1,0 +1,121 @@
+{
+  "common": {
+    "appName": "SautiWallet",
+    "tagline": "Uhuru wa Kifedha Unaotumia Sauti",
+    "loading": "Inapakia...",
+    "error": "Hitilafu imetokea",
+    "retry": "Jaribu tena",
+    "save": "Hifadhi",
+    "cancel": "Ghairi",
+    "back": "Rudi",
+    "continue": "Endelea",
+    "send": "Tuma",
+    "receive": "Pokea",
+    "pay": "Lipa",
+    "save_money": "Hifadhi"
+  },
+  "onboarding": {
+    "welcome": "Karibu kwenye SautiWallet",
+    "subtitle": "Msaidizi wako wa kifedha anayetumia sauti",
+    "financial_freedom": "Uhuru wa kifedha kupitia sauti",
+    "description": "SautiWallet inakusaidia kusimamia pesa, kuhifadhi na jamii yako, na kujenga usalama wa kifedha—yote kupitia amri rahisi za sauti kwa lugha yako.",
+    "features": {
+      "local_language": "Ongea kwa lugha yako ya asili",
+      "money_management": "Tuma, hifadhi, na simamia pesa kwa urahisi",
+      "sacco_support": "Msaada kwa vikundi vya akiba vya kijiji (SACCO)"
+    },
+    "get_started": "Anza",
+    "language_selection": {
+      "title": "Chagua Lugha Yako",
+      "subtitle": "Chagua lugha unayostarehe nayo zaidi"
+    },
+    "voice_setup": {
+      "title": "Chagua Msaidizi Wako wa Sauti",
+      "subtitle": "Chagua sauti utakayostarehe kuongea nayo",
+      "test_mic": "Jaribu maikrofoni yako kwa kusema \"Hello Sauti\"",
+      "listening": "Inasikiliza..."
+    },
+    "all_set": {
+      "title": "Uko tayari!",
+      "subtitle": "SautiWallet yako iko tayari kutumika",
+      "go_to_dashboard": "Nenda kwenye Dashibodi"
+    }
+  },
+  "dashboard": {
+    "title": "Dashibodi",
+    "wallet_balance": "Salio la Wallet",
+    "savings": "Akiba",
+    "sacco_group": "Kikundi cha SACCO",
+    "quick_actions": "Vitendo vya Haraka",
+    "send_money": "Tuma Pesa",
+    "receive": "Pokea",
+    "pay_bills": "Lipa Bili",
+    "save": "Hifadhi",
+    "ai_tip": "Ushauri wa Sauti AI",
+    "show_me_how": "Nionyeshe jinsi",
+    "recent_transactions": "Miamala ya Hivi Karibuni",
+    "view_all": "Ona yote",
+    "speak_to_sauti": "Ongea na Sauti"
+  },
+  "send_money": {
+    "title": "Tuma Pesa",
+    "subtitle": "Tuma pesa kwa familia na marafiki",
+    "search_contacts": "Tafuta anwani au ingiza namba ya simu",
+    "no_contacts": "Hakuna anwani zilizopatikana",
+    "send_to": "Tuma kwa",
+    "recent": "Hivi Karibuni",
+    "all_contacts": "Anwani Zote",
+    "amount": "Kiasi (UGX)",
+    "enter_amount": "Ingiza kiasi",
+    "add_note": "Ongeza maelezo (si lazima)",
+    "note_placeholder": "Malipo haya ni ya nini?",
+    "recording": "Inarekodi...",
+    "confirm_transaction": "Thibitisha Muamala",
+    "sending": "Inatuma",
+    "to": "kwa",
+    "note": "Maelezo:",
+    "transaction_fee": "Ada ya muamala",
+    "total_amount": "Jumla ya kiasi",
+    "enter_pin": "Ingiza PIN yako kuthibitisha",
+    "pin_placeholder": "Ingiza PIN ya tarakimu 4",
+    "send_money_button": "Tuma Pesa",
+    "success": {
+      "title": "Utumaji Umefanikiwa!",
+      "subtitle": "Umetuma UGX {amount} kwa {recipient}",
+      "transaction_id": "Kitambulisho cha Muamala: {id}",
+      "send_another": "Tuma Nyingine",
+      "back_to_home": "Rudi Nyumbani"
+    }
+  },
+  "transactions": {
+    "title": "Historia ya Miamala",
+    "search": "Tafuta miamala",
+    "type": "Aina",
+    "category": "Kategoria",
+    "date": "Tarehe",
+    "filters_applied": "Vichujio vilivyotumika:",
+    "clear_filters": "Futa vichujio",
+    "no_transactions": "Hakuna miamala iliyopatikana",
+    "adjust_filters": "Jaribu kurekebisha utafutaji wako au vigezo vya kichujio",
+    "transaction_details": {
+      "sent_to": "Imetumwa kwa",
+      "received_from": "Imepokelewa kutoka",
+      "paid_to": "Imelipwa kwa",
+      "transaction_type": "Aina ya Muamala",
+      "description": "Maelezo",
+      "transaction_id": "Kitambulisho cha Muamala",
+      "download_receipt": "Pakua Risiti",
+      "report_issue": "Ripoti Tatizo",
+      "back_to_transactions": "Rudi kwa Miamala"
+    },
+    "all_types": "Aina Zote",
+    "all_categories": "Kategoria Zote"
+  },
+  "voice_assistant": {
+    "title": "Msaidizi Sauti",
+    "listening": "Inasikiliza...",
+    "tap_mic": "Gusa maikrofoni na ongea na Sauti",
+    "type_message": "Andika ujumbe...",
+    "just_now": "Sasa hivi"
+  }
+}

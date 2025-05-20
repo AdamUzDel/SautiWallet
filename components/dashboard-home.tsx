@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Mic, Send, Download, CreditCard, PiggyBank, ArrowRight, TrendingUp, ChevronRight } from "lucide-react"
 import { VoiceAssistant } from "@/components/voice-assistant"
+import { useTranslations } from "next-intl"
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -24,6 +25,7 @@ const staggerContainer = {
 
 export function DashboardHome() {
   const [showVoiceAssistant, setShowVoiceAssistant] = useState(false)
+  const t = useTranslations()
 
   const quickActions = [
     { name: "Send Money", icon: Send, color: "bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-400" },
@@ -72,7 +74,7 @@ export function DashboardHome() {
       {showVoiceAssistant && <VoiceAssistant onClose={() => setShowVoiceAssistant(false)} />}
 
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{t("dashboard.title")}</h1>
         <Button
           onClick={() => setShowVoiceAssistant(true)}
           className="rounded-full sauti-gradient hover:opacity-90 transition-opacity"

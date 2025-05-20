@@ -1,0 +1,121 @@
+{
+  "common": {
+    "appName": "SautiWallet",
+    "tagline": "Eddembe ly'Ensimbi Elyogerwako",
+    "loading": "Tulinda...",
+    "error": "Waliwo ensobi",
+    "retry": "Gezaako nate",
+    "save": "Tereka",
+    "cancel": "Sazaamu",
+    "back": "Ddayo",
+    "continue": "Weyongereyo",
+    "send": "Wereza",
+    "receive": "Fuuna",
+    "pay": "Sasula",
+    "save_money": "Tereka"
+  },
+  "onboarding": {
+    "welcome": "Tukwaniriza ku SautiWallet",
+    "subtitle": "Omuyambi wo ow'ensimbi akola n'eddoboozi",
+    "financial_freedom": "Eddembe ly'ensimbi nga liyita mu ddoboozi",
+    "description": "SautiWallet ekuyamba okulabirira ensimbi, okutereka n'abantu bo, n'okuzimba obukuumi bw'ensimbi—byonna nga biyita mu biragiro by'eddoboozi ebyangu mu lulimi lwo.",
+    "features": {
+      "local_language": "Yogera mu lulimi lwo",
+      "money_management": "Wereza, tereka, era labirira ensimbi n'obwangu",
+      "sacco_support": "Obuyambi bw'ebibinja by'okutereka ebyalo (SACCO)"
+    },
+    "get_started": "Tandika",
+    "language_selection": {
+      "title": "Londa Olulimi Lwo",
+      "subtitle": "Londa olulimi lw'onyumirwamu okusinga"
+    },
+    "voice_setup": {
+      "title": "Londa Omuyambi wo ow'Eddoboozi",
+      "subtitle": "Londa eddoboozi ly'onoogenda okwogeramu naye",
+      "test_mic": "Kema omuzindaalo gwo nga oyogera \"Hello Sauti\"",
+      "listening": "Mpuliriza..."
+    },
+    "all_set": {
+      "title": "Oteekateeka bulungi!",
+      "subtitle": "SautiWallet yo eteekateeka okukozesebwa",
+      "go_to_dashboard": "Genda ku Dashiboodi"
+    }
+  },
+  "dashboard": {
+    "title": "Dashiboodi",
+    "wallet_balance": "Obungi bw'Ensimbi mu Wallet",
+    "savings": "Okutereka",
+    "sacco_group": "Ekibinja kya SACCO",
+    "quick_actions": "Ebikolwa Ebyangu",
+    "send_money": "Wereza Ensimbi",
+    "receive": "Fuuna",
+    "pay_bills": "Sasula Ebisale",
+    "save": "Tereka",
+    "ai_tip": "Amagezi ga Sauti AI",
+    "show_me_how": "Ndaga engeri",
+    "recent_transactions": "Entambula z'Ensimbi Ezaakamala",
+    "view_all": "Laba byonna",
+    "speak_to_sauti": "Yogera ne Sauti"
+  },
+  "send_money": {
+    "title": "Wereza Ensimbi",
+    "subtitle": "Wereza ensimbi eri ab'ennyumba n'emikwano",
+    "search_contacts": "Noonya emikwano oba wandiika ennamba y'essimu",
+    "no_contacts": "Tewali mikwano gizuuliddwa",
+    "send_to": "Wereza eri",
+    "recent": "Ezaakamala",
+    "all_contacts": "Emikwano Gyonna",
+    "amount": "Omuwendo (UGX)",
+    "enter_amount": "Wandiika omuwendo",
+    "add_note": "Yongerako okunnyonnyola (ssi kya tteeka)",
+    "note_placeholder": "Ensimbi zino za ki?",
+    "recording": "Nkwata...",
+    "confirm_transaction": "Kakasa Entambula y'Ensimbi",
+    "sending": "Nwereza",
+    "to": "eri",
+    "note": "Okunnyonnyola:",
+    "transaction_fee": "Ebisale by'entambula",
+    "total_amount": "Omuwendo gwonna",
+    "enter_pin": "Wandiika PIN yo okukakasa",
+    "pin_placeholder": "Wandiika PIN y'enamba 4",
+    "send_money_button": "Wereza Ensimbi",
+    "success": {
+      "title": "Okusindika Kutuukiriziddwa!",
+      "subtitle": "Osindise UGX {amount} eri {recipient}",
+      "transaction_id": "Endagiriro y'Entambula: {id}",
+      "send_another": "Wereza Endala",
+      "back_to_home": "Ddayo ku Mpapula Enkulu"
+    }
+  },
+  "transactions": {
+    "title": "Ebyafaayo by'Entambula",
+    "search": "Noonya entambula",
+    "type": "Ekika",
+    "category": "Ettuluba",
+    "date": "Ennaku",
+    "filters_applied": "Ebyetongodde byakozeseddwa:",
+    "clear_filters": "Gyawo ebyetongodde",
+    "no_transactions": "Tewali ntambula zizuuliddwa",
+    "adjust_filters": "Gezaako okukyusa okunoonya kwo oba ebyetongodde",
+    "transaction_details": {
+      "sent_to": "Eweereddwa eri",
+      "received_from": "Efuniddwa okuva",
+      "paid_to": "Esasuliddwa eri",
+      "transaction_type": "Ekika ky'Entambula",
+      "description": "Okunnyonnyola",
+      "transaction_id": "Endagiriro y'Entambula",
+      "download_receipt": "Fuuna Ekikakasa",
+      "report_issue": "Loopa Obuzibu",
+      "back_to_transactions": "Ddayo ku Ntambula"
+    },
+    "all_types": "Ebika Byonna",
+    "all_categories": "Amatuluba Gonna"
+  },
+  "voice_assistant": {
+    "title": "Omuyambi Sauti",
+    "listening": "Mpuliriza...",
+    "tap_mic": "Konyako ku muzindaalo oyogere ne Sauti",
+    "type_message": "Wandiika obubaka...",
+    "just_now": "Kakati"
+  }
+}

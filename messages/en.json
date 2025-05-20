@@ -1,0 +1,123 @@
+{
+  "common": {
+    "appName": "SautiWallet",
+    "tagline": "Voice-Powered Financial Freedom",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "continue": "Continue",
+    "send": "Send",
+    "receive": "Receive",
+    "pay": "Pay",
+    "save_money": "Save",
+    "you": "You",
+    "send_money": "Send Money"
+  },
+  "onboarding": {
+    "welcome": "Welcome to SautiWallet",
+    "subtitle": "Your voice-powered financial companion",
+    "financial_freedom": "Financial freedom through voice",
+    "description": "SautiWallet helps you manage money, save with your community, and build financial security—all through simple voice commands in your language.",
+    "features": {
+      "local_language": "Speak in your local language",
+      "money_management": "Send, save, and manage money easily",
+      "sacco_support": "Support for village savings groups (SACCO)"
+    },
+    "get_started": "Get Started",
+    "language_selection": {
+      "title": "Choose Your Language",
+      "subtitle": "Select the language you're most comfortable with"
+    },
+    "voice_setup": {
+      "title": "Choose Your Voice Assistant",
+      "subtitle": "Select a voice that you'll be comfortable talking with",
+      "test_mic": "Test your microphone by saying \"Hello Sauti\"",
+      "listening": "Listening..."
+    },
+    "all_set": {
+      "title": "You're all set!",
+      "subtitle": "Your SautiWallet is ready to use",
+      "go_to_dashboard": "Go to Dashboard"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "wallet_balance": "Wallet Balance",
+    "savings": "Savings",
+    "sacco_group": "SACCO Group",
+    "quick_actions": "Quick Actions",
+    "send_money": "Send Money",
+    "receive": "Receive",
+    "pay_bills": "Pay Bills",
+    "save": "Save",
+    "ai_tip": "Sauti AI Tip",
+    "show_me_how": "Show me how",
+    "recent_transactions": "Recent Transactions",
+    "view_all": "View all",
+    "speak_to_sauti": "Speak to Sauti"
+  },
+  "send_money": {
+    "title": "Send Money",
+    "subtitle": "Transfer funds to friends and family",
+    "search_contacts": "Search contacts or enter phone number",
+    "no_contacts": "No contacts found",
+    "send_to": "Send to",
+    "recent": "Recent",
+    "all_contacts": "All Contacts",
+    "amount": "Amount (UGX)",
+    "enter_amount": "Enter amount",
+    "add_note": "Add a note (optional)",
+    "note_placeholder": "What's this payment for?",
+    "recording": "Recording...",
+    "confirm_transaction": "Confirm Transaction",
+    "sending": "Sending",
+    "to": "to",
+    "note": "Note:",
+    "transaction_fee": "Transaction fee",
+    "total_amount": "Total amount",
+    "enter_pin": "Enter your PIN to confirm",
+    "pin_placeholder": "Enter 4-digit PIN",
+    "send_money_button": "Send Money",
+    "success": {
+      "title": "Transfer Successful!",
+      "subtitle": "You've sent UGX {amount} to {recipient}",
+      "transaction_id": "Transaction ID: {id}",
+      "send_another": "Send Another",
+      "back_to_home": "Back to Home"
+    }
+  },
+  "transactions": {
+    "title": "Transaction History",
+    "search": "Search transactions",
+    "type": "Type",
+    "category": "Category",
+    "date": "Date",
+    "filters_applied": "Filters applied:",
+    "clear_filters": "Clear filters",
+    "no_transactions": "No transactions found",
+    "adjust_filters": "Try adjusting your search or filter criteria",
+    "transaction_details": {
+      "sent_to": "Sent to",
+      "received_from": "Received from",
+      "paid_to": "Paid to",
+      "transaction_type": "Transaction Type",
+      "description": "Description",
+      "transaction_id": "Transaction ID",
+      "download_receipt": "Download Receipt",
+      "report_issue": "Report Issue",
+      "back_to_transactions": "Back to Transactions"
+    },
+    "all_types": "All Types",
+    "all_categories": "All Categories"
+  },
+  "voice_assistant": {
+    "title": "Sauti Assistant",
+    "listening": "Listening...",
+    "tap_mic": "Tap the microphone and speak to Sauti",
+    "type_message": "Type a message...",
+    "just_now": "Just now"
+  }
+}

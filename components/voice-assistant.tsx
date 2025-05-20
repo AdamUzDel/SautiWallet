@@ -1,48 +1,94 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Mic, X, Send } from "lucide-react"
+import { getVoiceAssistant } from "@/lib/voice-assistant"
+import { chatWithGemini } from "@/lib/gemini/client"
+import { useTranslations } from "next-intl"
 
 interface VoiceAssistantProps {
   onClose: () => void
 }
 
 export function VoiceAssistant({ onClose }: VoiceAssistantProps) {
+  const t = useTranslations()
   const [isListening, setIsListening] = useState(false)
   const [transcript, setTranscript] = useState("")
   const [response, setResponse] = useState("")
   const [isResponding, setIsResponding] = useState(false)
+  const [isSpeechSupported, setIsSpeechSupported] = useState(true)
+  const voiceAssistantRef = useRef<ReturnType<typeof getVoiceAssistant> | null>(null)
 
-  // Simulate voice recognition
+  // Initialize voice assistant
   useEffect(() => {
-    if (isListening) {
-      const timer = setTimeout(() => {
+    if (typeof window !== "undefined") {
+      try {
+        voiceAssistantRef.current = getVoiceAssistant()
+        setIsSpeechSupported(voiceAssistantRef.current.isSupported())
+      } catch (error) {
+        console.error("Error initializing voice assistant:", error)
+        setIsSpeechSupported(false)
+      }
+    }
+  }, [])
+
+  // Handle voice recognition
+  const startListening = () => {
+    if (!voiceAssistantRef.current || !isSpeechSupported) {
+      // Fallback for browsers without speech recognition
+      setIsListening(true)
+      // Simulate voice recognition with a timeout
+      setTimeout(() => {
         setTranscript("Send 20,000 UGX to Sarah for groceries")
         setIsListening(false)
         handleSendMessage()
       }, 3000)
-      return () => clearTimeout(timer)
+      return
     }
-  }, [isListening])
 
-  // Simulate assistant response
-  const handleSendMessage = () => {
-    if (transcript) {
-      setIsResponding(true)
-      const timer = setTimeout(() => {
-        setResponse("I'll send 20,000 UGX to Sarah for groceries. Is that correct?")
-        setIsResponding(false)
-      }, 1500)
-      return () => clearTimeout(timer)
-    }
-  }
-
-  const startListening = () => {
     setIsListening(true)
     setTranscript("")
     setResponse("")
+
+    voiceAssistantRef.current.startListening(
+      (text) => {
+        setTranscript(text)
+        setIsListening(false)
+        // Process the transcript
+        if (text) {
+          handleSendMessage(text)
+        }
+      },
+      (error) => {
+        console.error("Speech recognition error:", error)
+        setIsListening(false)
+      },
+    )
+  }
+
+  // Handle sending message to AI
+  const handleSendMessage = async (text = transcript) => {
+    if (!text) return
+
+    setIsResponding(true)
+
+    try {
+      // Use Gemini API for response
+      const aiResponse = await chatWithGemini(
+        [{ role: "user", content: text }],
+        "You are Sauti, a helpful voice assistant for a mobile wallet app. Keep responses brief and focused on financial tasks.",
+      )
+
+      setResponse(aiResponse || "I'll send 20,000 UGX to Sarah for groceries. Is that correct?")
+    } catch (error) {
+      console.error("Error getting AI response:", error)
+      // Fallback response
+      setResponse("I'll send 20,000 UGX to Sarah for groceries. Is that correct?")
+    } finally {
+      setIsResponding(false)
+    }
   }
 
   return (
@@ -64,7 +110,7 @@ export function VoiceAssistant({ onClose }: VoiceAssistantProps) {
               <div className="h-8 w-8 rounded-full sauti-gradient flex items-center justify-center mr-2">
                 <Mic className="h-4 w-4 text-white" />
               </div>
-              <h2 className="font-medium text-gray-900 dark:text-white">Sauti Assistant</h2>
+              <h2 className="font-medium text-gray-900 dark:text-white">{t("voice_assistant.title")}</h2>
             </div>
             <Button variant="ghost" size="icon" onClick={onClose}>
               <X className="h-5 w-5" />
@@ -75,7 +121,7 @@ export function VoiceAssistant({ onClose }: VoiceAssistantProps) {
             {!transcript && !response && (
               <div className="flex-1 flex flex-col items-center justify-center text-center">
                 <p className="text-gray-500 dark:text-gray-400 mb-4">
-                  {isListening ? "Listening..." : "Tap the microphone and speak to Sauti"}
+                  {isListening ? t("voice_assistant.listening") : t("voice_assistant.tap_mic")}
                 </p>
                 {isListening && (
                   <div className="relative">
@@ -93,7 +139,9 @@ export function VoiceAssistant({ onClose }: VoiceAssistantProps) {
                 <div className="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg rounded-br-none">
                   <p className="text-gray-800 dark:text-gray-200">{transcript}</p>
                 </div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 text-right">You • Just now</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 text-right">
+                  {t("common.you")} • {t("voice_assistant.just_now")}
+                </p>
               </div>
             )}
 
@@ -123,7 +171,7 @@ export function VoiceAssistant({ onClose }: VoiceAssistantProps) {
                 <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded-lg rounded-bl-none">
                   <p className="text-gray-800 dark:text-gray-200">{response}</p>
                 </div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Sauti • Just now</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Sauti • {t("voice_assistant.just_now")}</p>
               </div>
             )}
           </div>
@@ -140,7 +188,7 @@ export function VoiceAssistant({ onClose }: VoiceAssistantProps) {
             <div className="flex-1 relative">
               <input
                 type="text"
-                placeholder="Type a message..."
+                placeholder={t("voice_assistant.type_message")}
                 className="w-full rounded-full bg-gray-100 dark:bg-gray-700 border-0 py-2 px-4 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500"
                 value={transcript}
                 onChange={(e) => setTranscript(e.target.value)}
@@ -149,7 +197,7 @@ export function VoiceAssistant({ onClose }: VoiceAssistantProps) {
                 variant="ghost"
                 size="icon"
                 className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 text-blue-600 dark:text-blue-400"
-                onClick={handleSendMessage}
+                onClick={() => handleSendMessage()}
                 disabled={!transcript}
               >
                 <Send className="h-4 w-4" />
@@ -159,8 +207,8 @@ export function VoiceAssistant({ onClose }: VoiceAssistantProps) {
 
           {response && (
             <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex justify-end space-x-3">
-              <Button variant="outline">No, cancel</Button>
-              <Button className="sauti-gradient hover:opacity-90 transition-opacity">Yes, send money</Button>
+              <Button variant="outline">{t("common.cancel")}</Button>
+              <Button className="sauti-gradient hover:opacity-90 transition-opacity">{t("common.send_money")}</Button>
             </div>
           )}
         </motion.div>
