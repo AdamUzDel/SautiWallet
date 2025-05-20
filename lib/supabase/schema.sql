@@ -199,7 +199,7 @@ create policy "Users can create their own transactions."
   with check (auth.uid() = user_id);
 
 -- Savings Groups policies
-create policy "Users can view savings groups they are members  = user_id);
+-- create policy "Users can view savings groups they are members  = user_id);
 
 -- Savings Groups policies
 create policy "Users can view savings groups they are members of." 
