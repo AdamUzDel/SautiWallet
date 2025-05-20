@@ -32,30 +32,32 @@ interface SpeechRecognitionEvent extends Event {
     prototype: SpeechRecognition
   }
   
-  // Define the SpeechSynthesis interface
-  interface SpeechSynthesisUtterance extends EventTarget {
+  // Define a more complete SpeechSynthesisUtterance interface
+  interface CustomSpeechSynthesisUtterance extends EventTarget {
     lang: string
     pitch: number
     rate: number
     text: string
     voice: SpeechSynthesisVoice | null
     volume: number
+    onboundary: ((this: SpeechSynthesisUtterance, ev: Event) => any) | null
     onend: ((this: SpeechSynthesisUtterance, ev: Event) => any) | null
     onerror: ((this: SpeechSynthesisUtterance, ev: Event) => any) | null
+    onmark: ((this: SpeechSynthesisUtterance, ev: Event) => any) | null
     onpause: ((this: SpeechSynthesisUtterance, ev: Event) => any) | null
     onresume: ((this: SpeechSynthesisUtterance, ev: Event) => any) | null
     onstart: ((this: SpeechSynthesisUtterance, ev: Event) => any) | null
   }
   
-  interface SpeechSynthesisUtteranceConstructor {
-    new (text?: string): SpeechSynthesisUtterance
-    prototype: SpeechSynthesisUtterance
+  interface CustomSpeechSynthesisUtteranceConstructor {
+    new (text?: string): CustomSpeechSynthesisUtterance
+    prototype: CustomSpeechSynthesisUtterance
   }
   
   // Get the appropriate SpeechRecognition constructor based on browser
   let SpeechRecognitionAPI: SpeechRecognitionConstructor | undefined
   let SpeechGrammarList: any
-  let SpeechSynthesisUtteranceAPI: SpeechSynthesisUtteranceConstructor | undefined
+  let SpeechSynthesisUtteranceAPI: CustomSpeechSynthesisUtteranceConstructor | undefined
   
   // Initialize the speech recognition and synthesis APIs if in browser environment
   if (typeof window !== "undefined") {
@@ -71,7 +73,7 @@ interface SpeechRecognitionEvent extends Event {
       (window as any).mozSpeechGrammarList ||
       (window as any).msSpeechGrammarList
   
-    SpeechSynthesisUtteranceAPI = (window as any).SpeechSynthesisUtterance
+    SpeechSynthesisUtteranceAPI = (window as any).SpeechSynthesisUtterance as CustomSpeechSynthesisUtteranceConstructor
   }
   
   // Voice assistant class
@@ -150,6 +152,7 @@ interface SpeechRecognitionEvent extends Event {
         return false
       }
   
+      // Use the custom interface to avoid TypeScript errors
       const utterance = new SpeechSynthesisUtteranceAPI(text)
       utterance.lang = this.language
   

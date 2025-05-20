@@ -6,8 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { CheckCircle2, XCircle } from "lucide-react"
 import { supabase } from "@/lib/supabase/client"
-import { GoogleGenerativeAI } from "@google/generative-ai"
-//import {GoogleGenAI} from '@google/genai';
+import { GoogleGenAI } from "@google/genai"
 
 export function IntegrationTest() {
   const [supabaseStatus, setSupabaseStatus] = useState<"loading" | "success" | "error">("loading")
@@ -45,15 +44,17 @@ export function IntegrationTest() {
         }
 
         // Initialize the Gemini API with the latest approach
-        const genAI = new GoogleGenerativeAI(apiKey)
+        const genAI = new GoogleGenAI({apiKey: apiKey})
 
         // For text-only input, use the gemini-pro model
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" })
+        //const model = genAI.getGenerativeModel({ model: "gemini-pro" })
 
         // Generate content using the latest API
-        const result = await model.generateContent("Hello, are you working?")
-        const response = await result.response
-        const text = response.text()
+        const response = await genAI.models.generateContent({
+            model: "gemini-2.0-flash",
+            contents: "Hello, are you working.",
+          });
+        const text = response.text
 
         if (text) {
           setGeminiStatus("success")
